@@ -1,0 +1,2 @@
+	Neste projeto houve duas complicações na parte do back-end, onde não consegui ajustar o delete nem o update assim, mesmo estando implementadas na parte do fronte-end elas não estão funcionando.
+	Para iniciar os servidores back-end e front-end só ultilizar npm start dentro das pastas dos respectivos, através do cmd.

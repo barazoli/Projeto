@@ -1,0 +1,64 @@
+
+const express = require("express")
+const routes = express.Router()
+
+
+let db = [
+    {  "id": 1,"placa": "xt1pot1","chassi": 13510277777777770,"renavam": 202312578969,"modelo": "Sedan","marca": "Fiat","ano": 2019},
+    {  "id": 2,"placa": "1t1l34t","chassi": 12331231231237777,"renavam": 209342345678,"modelo": "Hatch","marca": "Toyota","ano": 2019},
+    {  "id": 3,"placa": "tt22233","chassi": 45611222333444555,"renavam": 337890672209,"modelo": "Suv","marca": "Volkswagen","ano": 2022},
+    {  "id": 4,"placa": "xxylol1","chassi": 87976547389761020,"renavam": 209312346578,"modelo": "Sedan","marca": "Ford","ano": 2021},
+]
+
+
+ 
+//Buscar Dados
+routes.get ("/",function(req,res) {
+    return res.json(db)
+
+});
+//Adicionar Dados
+routes.post ("/add", (req,res) => {
+    const body = req.body
+    if (!body)
+        return res.status(400).end()
+        
+        db.push(body)
+        return res.json(body)
+
+});
+ 
+//Deletar dados
+
+routes.delete("/:id",(req,res) => {
+    const id = req.params.id
+
+    let newDB = db.filter (item => {
+        if(!item[id])
+        return item
+    })
+    db = newDB
+    return res.send(newDB)
+});  
+
+//Atualizar Dados
+
+routes.put  ("/update", (req,res) => {
+    res.json({
+        "id": req.body.id,
+        "placa": req.body.placa,
+        "chassi": req.body.chassi,
+        "renavam": req.body.renavam,
+        "modelo": req.body.placa,
+        "marca": req.body.marca,
+        "ano": req.body.ano,
+    });
+    db = newDB
+    return res.send(newDB)
+});
+
+
+
+
+
+module.exports = routes
